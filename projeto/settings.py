@@ -13,8 +13,21 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 import os
 from pathlib import Path
 
+from django.core.exceptions import ImproperlyConfigured
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
+
+
+def obter_variavel(nome):
+    valor = os.getenv(nome)
+    if not valor:
+        raise ImproperlyConfigured(
+            f"A variável de ambiente obrigatória {nome} não foi definida."
+        )
+    return valor
 
 
 # Quick-start development settings - unsuitable for production
@@ -82,9 +95,14 @@ WSGI_APPLICATION = 'projeto.wsgi.application'
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": obter_variavel("DB_NAME"),
+        "USER": obter_variavel("DB_USER"),
+        "PASSWORD": obter_variavel("DB_PASSWORD"),
+        "HOST": obter_variavel("DB_HOST"),
+        "PORT": obter_variavel("DB_PORT"),
+        "CONN_MAX_AGE": 60,
     }
 }
 

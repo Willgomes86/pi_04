@@ -26,7 +26,7 @@ por API, permitindo demonstrar o fluxo sem depender de um equipamento IoT real.
 - Django REST Framework
 - pandas
 - scikit-learn
-- SQLite
+- PostgreSQL
 
 ## Estrutura
 
@@ -56,6 +56,22 @@ No Windows PowerShell:
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
+Copy-Item .env.example .env
+```
+
+Preencha o arquivo `.env` com os dados do PostgreSQL:
+
+```dotenv
+DB_NAME=nome_do_banco
+DB_USER=usuario_do_banco
+DB_PASSWORD=senha_do_banco
+DB_HOST=servidor_do_banco
+DB_PORT=5432
+```
+
+O PostgreSQL é obrigatório. Com o banco configurado, execute:
+
+```powershell
 python manage.py migrate
 python manage.py gerar_dados_demo
 python manage.py runserver
@@ -163,10 +179,10 @@ o endpoint de indicadores.
 
 ## Limites assumidos para o protótipo
 
-- utiliza SQLite e execução local;
+- utiliza exclusivamente PostgreSQL;
 - a telemetria é enviada pela API, simulando um ESP32;
 - o dashboard é intencionalmente simples e voltado apenas à demonstração;
 - o modelo é treinado no momento da previsão, solução suficiente para a pequena
   base acadêmica, mas não indicada para produção;
-- autenticação, permissões avançadas e infraestrutura em nuvem estão fora do
+- autenticação, permissões avançadas e automação de infraestrutura estão fora do
   escopo deste MVP.
