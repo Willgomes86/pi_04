@@ -1,6 +1,10 @@
+.venv/
 venv/
 __pycache__/
+*.py[cod]
 db.sqlite3
 .env
+.idea/
+tmp/
 *.pkl
 *.joblib
