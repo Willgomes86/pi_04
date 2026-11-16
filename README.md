@@ -186,3 +186,9 @@ o endpoint de indicadores.
   base acadêmica, mas não indicada para produção;
 - autenticação, permissões avançadas e automação de infraestrutura estão fora do
   escopo deste MVP.
+
+## Equipe
+
+- [Willyan Gomes](https://github.com/Willgomes86)
+- [Vitor Luiz da Silva](https://github.com/VitorLuizdaSilva) — versão inicial do projeto em
+  [PI-IV](https://github.com/VitorLuizdaSilva/PI-IV)
